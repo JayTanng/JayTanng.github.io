@@ -1,0 +1,30 @@
+permalink: /:year:month:day/:title.html
+url: #Your url here
+baseurl: /project
+buildtime: "1591286400"
+
+# variables
+name: Tang's blog
+
+
+# variables
+name: TANG
+description: This is a personal blog to share life and knowledge
+google_verification: null
+
+
+# File management
+include: [".htaccess"]
+exclude: ["README.md", "LICENSE"]
+
+# Sass
+sass:
+  style: :compressed
+  sass_dir: _sass
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    disable : true
