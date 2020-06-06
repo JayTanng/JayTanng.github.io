@@ -1,7 +1,7 @@
 Java:
   name: Java
 
-Computer-Network:
+计算机网络:
   name: 计算机网络
 
 Database:
@@ -10,5 +10,5 @@ Database:
 Leetcode:
   name: Leetcode
   
-Thoughts:
+杂记:
   name: 杂记
