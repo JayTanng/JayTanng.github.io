@@ -4,7 +4,7 @@ baseurl: /project
 buildtime: "1591286400"
 
 # variables
-name: Tang's blog
+name: Tang's Blog
 description: This is a personal blog to share life and knowledge
 google_verification: null
 
@@ -24,6 +24,9 @@ kramdown:
   input: GFM
   syntax_highlighter_opts:
     disable : true
+	
+paginate: 5
+paginate_path: "/page/:num/"
 
 # Plugins ...
 plugins:
