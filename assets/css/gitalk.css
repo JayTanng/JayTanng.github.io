@@ -1025,6 +1025,7 @@
   outline: none;
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
+  font-family: "microsoft yahei";
 }
 .gt-container .gt-header-textarea:hover {
   background-color: #fbfbfb;
