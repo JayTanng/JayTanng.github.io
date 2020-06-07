@@ -1,7 +1,6 @@
 <!-- Link Gitalk 的支持文件  -->
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
-<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
 <div id="gitalk-container"></div>     
 <script type="text/javascript">
     var gitalk = new Gitalk({
@@ -9,10 +8,10 @@
     // gitalk的主要参数
         clientID: 'fce91946ba9381818c17',
         clientSecret: '3dcb10278c52274868a8bfc6faa955b8b684c062',
-        repo: 'https://jaytanng.github.io/',
-        owner: 'JayTanng',
-        admin: ['JayTanng'],
-        id: md5(location.pathname),
+        repo: 'jaytanng.github.io/',
+        owner: 'jaytanng',
+        admin: ['jaytanng'],
+        id: decodeURI(window.location.pathname)
         
     });
     gitalk.render('gitalk-container');
