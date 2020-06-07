@@ -1,39 +1,19 @@
-{%- if page.key and
-  site.comments.gitalk.clientID and
-	site.comments.gitalk.clientSecret and
-	site.comments.gitalk.repository and
-	site.comments.gitalk.owner and
-	site.comments.gitalk.admin -%}
-
-	<!-- fix text color in the input textarea of gitalk -->
-	<style type="text/css">
-		.gitalk-wrapper .gt-header-textarea {
-			color: #333 !important;
-		}
-	</style>
-
-	{%- include snippets/get-sources.html -%}
-	{%- assign _sources = __return -%}
-	<div class="gitalk-wrapper" id="js-gitalk-container"></div>
-	{%- assign _admin = '' -%}
-	{%- for _admin_id in site.comments.gitalk.admin -%}
-		{%- assign _admin = _admin | append: ", '" | append: _admin_id | append: "'" -%}
-	{%- endfor -%}
-	{%- assign _last = _admin | size | minus: 1 -%}
-	{%- assign _admin = _admin | slice: 2, _last -%}
-	<script>
-		window.Lazyload.css('{{ _sources.gitalk.css }}');
-		window.Lazyload.js('{{ _sources.gitalk.js }}', function() {
-			var gitalk = new Gitalk({
-				clientID: '{{ site.comments.gitalk.clientID }}',
-				clientSecret: '{{ site.comments.gitalk.clientSecret }}',
-				repo: '{{ site.comments.gitalk.repository }}',
-				owner: '{{ site.comments.gitalk.owner }}',
-				admin: [{{ _admin }}],
-				id: '{{ page.key }}'
-			});
-			gitalk.render('js-gitalk-container');
-		});
-	</script>
-
-{%- endif -%}
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
+<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
+<div id="gitalk-container"></div>     
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+ 
+    // gitalk的主要参数
+        clientID: 'fce91946ba9381818c17',
+        clientSecret: '3dcb10278c52274868a8bfc6faa955b8b684c062',
+        repo: 'https://jaytanng.github.io/',
+        owner: 'JayTanng',
+        admin: ['JayTanng'],
+        id: md5(location.pathname),
+        
+    });
+    gitalk.render('gitalk-container');
+</script> 
