@@ -101,7 +101,7 @@
 				{{ content }}
 				<!-- pagenator -->
 				<div class="post-next">{% if page.next %}
-				  <a href="{{ page.next.url }}">&gt;&gt;{{ page.next.title }}</a>{% endif %}
+				  <a href="{{ page.next.url }}">{{ page.next.title }}&gt;&gt;</a>{% endif %}
 				</div>
 				<div class="post-prev">{% if page.previous %}
 				  <a href="{{ page.previous.url }}">&lt;&lt;{{ page.previous.title }}</a>{% endif %}
