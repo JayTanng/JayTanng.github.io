@@ -99,6 +99,8 @@
 			</ul>
 			<div class="post_content">
 				{{ content }}
+				<!-- comments -->
+				{% include comments.html %}
 				{% if page.title %}
 				{% include bottom.html %}
 				{% endif %}
