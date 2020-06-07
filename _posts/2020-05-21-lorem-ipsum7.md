@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Lorem Ipsum"
-tag: 计算机网络
+tag: Computer-Network
 ---
 
 ## Lorem Ipsum
