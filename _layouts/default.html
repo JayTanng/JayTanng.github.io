@@ -99,10 +99,10 @@
 			</ul>
 			<div class="post_content">
 				{{ content }}
-				<!-- paginator -->
-				<div class="post-next">{% if paginator.previous_page %}
+				<!-- pagenator -->
+				<div class="post-next">{% if page.next %}
 				  <h5>123</h5>
-				  {{ paginator.previous_page }}
+				  {{ page.next }}
 				  <a href="{{ page.next.url }}">{{ page.next.title }}</a>{% endif %}
 				</div>
 				<div class="post-prev">{% if page.previous %}
