@@ -18,6 +18,15 @@ sass:
   style: :compressed
   sass_dir: _sass
 
+# Plugins ...
+plugins:
+  - jekyll-paginate
+  - jemoji
+
+paginate: 5
+paginate_path: "/page/:num/"
+
+
 # Markdown
 markdown: kramdown
 kramdown:
@@ -25,10 +34,3 @@ kramdown:
   syntax_highlighter_opts:
     disable : true
 	
-paginate: 5
-paginate_path: "/page/:num/"
-
-# Plugins ...
-plugins:
-  - jekyll-paginate
-  - jemoji
