@@ -100,11 +100,11 @@
 			<div class="post_content">
 				{{ content }}
 				<!-- pagenator -->
-				<div class="post-next">{% if page.next %}
-				  <a href="{{ page.next.url }}">{{ page.next.title }}&gt;&gt;</a>{% endif %}
-				</div>
 				<div class="post-prev">{% if page.previous %}
 				  <a href="{{ page.previous.url }}">&lt;&lt;{{ page.previous.title }}</a>{% endif %}
+				</div>
+				<div class="post-next">{% if page.next %}
+				  <a href="{{ page.next.url }}">{{ page.next.title }}&gt;&gt;</a>{% endif %}
 				</div>
 				<!-- comments -->
 				{% include comments-providers/gitalk.html %}
