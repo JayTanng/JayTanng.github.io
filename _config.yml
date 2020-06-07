@@ -31,8 +31,8 @@ comments:
   provider: false # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
-  disqus:
-    shortname: # the Disqus shortname for the site
+  # disqus:
+  #   shortname: # the Disqus shortname for the site
 
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
@@ -41,14 +41,13 @@ comments:
     clientSecret: "3dcb10278c52274868a8bfc6faa955b8b684c062" # GitHub Application Client Secret
     repository  : "https://jaytanng.github.io/" # GitHub repo
     owner       : "JayTanng" # GitHub repo owner
-    admin: ["JayTanng"] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      # - your GitHub Id
+    admin: ["JayTanng"] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST. # - your GitHub Id
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
-  valine:
-    app_id      : # LeanCloud App id
-    app_key     : # LeanCloud App key
-    placeholder : # Prompt information
-    visitor     : # false (default)
-    meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
+  # valine:
+  #   app_id      : # LeanCloud App id
+  #   app_key     : # LeanCloud App key
+  #   placeholder : # Prompt information
+  #   visitor     : # false (default)
+  #   meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
