@@ -49,6 +49,7 @@
 						<ul>
 							{% assign tags = site.tags | sort %}
 							{% for tag in tags %}
+							{{ tag }}
 							<li><a href="/tag/{{ tag[0] }}" title="{{ tag[0] | replace:'-', ' ' }}"><img src="/assets/img/folder.ico" />{{ tag[0] | replace:'-', ' ' }}</a></li>
 							{% endfor %}
 						</ul>
