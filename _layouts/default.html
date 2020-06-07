@@ -99,6 +99,15 @@
 			</ul>
 			<div class="post_content">
 				{{ content }}
+				<!-- navigator -->
+				<div class="post-next">{% if page.next %}
+				  <h5>123</h5>
+				  {{ page.next }}
+				  <a href="{{ page.next.url }}">{{ page.next.title }}</a>{% endif %}
+				</div>
+				<div class="post-prev">{% if page.previous %}
+				  <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>{% endif %}
+				</div>
 				<!-- comments -->
 				{% include comments-providers/gitalk.html %}
 				{% if page.title %}

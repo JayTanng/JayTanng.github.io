@@ -438,3 +438,16 @@ ul.topbar {
 ::-webkit-scrollbar-corner {
 	background-color: #cacaca;
 } /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
+
+.post-next {
+    width: 50%;
+    float: left;
+    margin: 1px 0;
+}
+
+.post-prev {
+    width: 50%;
+    float: left;
+    margin: 1px 0;
+    text-align: right;
+}
