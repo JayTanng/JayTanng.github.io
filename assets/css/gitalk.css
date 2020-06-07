@@ -1026,6 +1026,7 @@
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
   font-family: "microsoft yahei";
+  color: #3c3c3c;
 }
 .gt-container .gt-header-textarea:hover {
   background-color: #fbfbfb;
