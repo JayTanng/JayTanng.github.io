@@ -104,10 +104,13 @@
 				<div style="width: 100%; height: 0.3rem;"></div>
 				<!-- pagenator -->
 				<div class="post-prev">{% if page.previous %}
-				  <a href="{{ page.previous.url }}">&lt;&lt;{{ page.previous.title }}</a>{% endif %}
+				  <i class="icon_chevron_left"></i>
+				  <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>{% endif %}
 				</div>
 				<div class="post-next">{% if page.next %}
-				  <a href="{{ page.next.url }}">{{ page.next.title }}&gt;&gt;</a>{% endif %}
+				  <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+				  <i class="icon_chevron_right"></i>
+				  {% endif %}
 				</div>
 				<!-- comments -->
 				{% include comments-providers/gitalk.html %}
