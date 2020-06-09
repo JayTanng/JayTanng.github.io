@@ -457,11 +457,13 @@ ul.topbar {
 	background-image: url(../assets/img/chevron_left.png);
 	width: 16.8px;
 	height: 16.8px;
+	background-position: center;
 }
 
 .icon_chevron_right {
 	display: inline-block;
 	background: url(../assets/img/chevron_right.png);
-	width: 16.8px;
-	height: 16.8px;
+	width: 13px;
+	height: 13px;
+	background-position: center;
 }
