@@ -23,10 +23,9 @@ tag: Leetcode
 
 [[Top]](#top)
 
-## <a name="anchor2"></a>合并排序法
+## <a name="anchor2"></a>合并排序法  
 
 加入该题没有要求时间复杂度为 **O(log(m + n))**，我们可以采取一下两种时间性能稍高的算法：
-
 1. 将两个数组合并成一个数组，再用[快速排序](https://www.jianshu.com/p/a68f72278f8f)处理合并后数组，最后直接通过$ c = \sqrt{a^{2}+b_{xy}^{2}+e^{x}} $。
    * 时间复杂度**O((m+n)log(m+n))**
    * 空间复杂度**O(m+n)**
@@ -55,14 +54,14 @@ tag: Leetcode
 		int n = nums2.length;
 
 		/**
-		 * 因为除法是向下取整的，所以无论m+n是奇数还是偶数，中位数都可以用(m+n+1)/2表示 */
+		 * 因为除法是向下取整的，所以无论m+n是奇数还是偶数，中位数都可以用(m+n+1)/2表示
 		 * m + (n - m + 1) / 2是防止m，n相加大于2^16-1
 		 */
 		int totalLeft = m + (n - m + 1) / 2;
 
 		/**
 		 * 先确定nums1的分割线位置，nums2的分割线位置可以由totalLeft-i得到
-         * 分割线需要保证nums1[i - 1] <= nums2[j] && nums1[i] >= nums[j - 1]
+		 * 分割线需要保证nums1[i - 1] <= nums2[j] && nums1[i] >= nums[j - 1]
 		 */
 		int left = 0;
 		int right = m;
@@ -85,7 +84,6 @@ tag: Leetcode
 		int nums2LeftMax = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];
 		int nums2RightMin = j == n ? Integer.MAX_VALUE : nums2[j];
 
-		\/\/ 123
 		/* 防止相加溢出 */
 		if ((m % 2 + n % 2) % 2 == 1) {
 			return Math.max(nums1LeftMax, nums2LeftMax);
