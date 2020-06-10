@@ -39,10 +39,12 @@ tag: Leetcode
 ## <a name="anchor3"></a>双指针法
 
 每个指针相当于一条分割线，双指针一共将两个数组分层4部分。比如，    
+
 | nums1 | nums2 |
 | :---- | :---- |
 | 1 2 3 | 7 8 9 |
 | 4 5 6 | 10 11 12 |    
+
 元素总个数可以为奇数也可以为偶数，关于这点算法中做了两个约定：  
 * 指针所指的数组下标表示分割线右边第一个数，所以当总数为奇数时直接取分割线左边的最大值，当总数为偶数时需要求左边最大值和右边最小值的平均值。
 * 中位数左边的总元素$ totalLeft = \frac{nums1.length + nums2.length + 1}{2} $     
@@ -122,7 +124,7 @@ tag: Leetcode
         return res;
     }
 ```   
-这里想跟大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)
+这里想跟大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)    
 [[Top]](#top)
 
 ## <a name="anchor4"></a>二分法
@@ -181,4 +183,4 @@ tag: Leetcode
 		}
 	}
 ```
-
+[[Top]](#top)
