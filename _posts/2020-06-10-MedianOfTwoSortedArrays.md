@@ -26,7 +26,7 @@ tag: Leetcode
 ## <a name="anchor2"></a>合并排序法  
 
 加入该题没有要求时间复杂度为 **O(log(m + n))**，我们可以采取一下两种时间性能稍高的算法：
-1. 将两个数组合并成一个数组，再用[快速排序](https://www.jianshu.com/p/a68f72278f8f)处理合并后数组，最后直接通过$ c = \sqrt{a^{2}+b_{xy}^{2}+e^{x}} $。
+1. 将两个数组合并成一个数组，再用[快速排序](https://www.jianshu.com/p/a68f72278f8f)处理合并后数组，最后直接通过\(ax^2 + bx + c = 0\)。
    * 时间复杂度**O((m+n)log(m+n))**
    * 空间复杂度**O(m+n)**
 2. 与上面的方法相似，但是合并后不排序，而是通过找第K大数的方法找中位数。具体的题目见[数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)。
