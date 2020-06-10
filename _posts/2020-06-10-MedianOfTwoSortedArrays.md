@@ -124,7 +124,7 @@ tag: Leetcode
         return res;
     }
 ```   
-这里想跟大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)    
+在这里和大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)希望读者可以自己尝试做一做     
 [[Top]](#top)
 
 ## <a name="anchor4"></a>二分法
