@@ -20,8 +20,14 @@
 			hljs.initHighlightingOnLoad();
 		</script>
 		<!-- 数学公式 -->
-		<script type="text/javascript" async
-		  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+		    tex2jax: {
+		      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		      inlineMath: [['$','$']]
+		    }
+		  });
 		</script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167202935-1"></script>
