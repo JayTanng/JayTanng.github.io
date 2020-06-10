@@ -45,43 +45,52 @@ tag: Leetcode
 
 ``` java
 public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-	if (nums2.length > nums1.length) {
+	//
+	if (nums1.length > nums2.length) {
 		int[] temp = nums1;
 		nums1 = nums2;
 		nums2 = temp;
 	}
+	
+	int m = nums1.length;
+	int n = nums2.length;
 
-		int m = nums1.length;
-		int n = nums2.length;
+	// 因为除法是向下取整的，所以无论m+n是奇数还是偶数，中位数都可以用(m+n+1)/2表示
+	int totalLeft = m + (n - m + 1) / 2;   // 防止m，n相加大于2^16-1
 
-		int totalLeft = m + (n - m + 1) / 2;
-
-		int left = 0;
-		int right = m;
-		while (left < right) {
-			int i = left + (right - left + 1) / 2;
-			int j = totalLeft - i;
-			if (nums1[i - 1] > nums2[j]) {
-				right = i - 1;
-			} else {
-				left = i;
-			}
-	   }
-
-		int i = left;
-		int j = totalLeft - left;
-
-		int nums1LeftMax = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];
-		int nums1RightMin = i == m ? Integer.MAX_VALUE : nums1[i];
-		int nums2LeftMax = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];
-		int nums2RightMin = j == n ? Integer.MAX_VALUE : nums2[j];
-
-		if ((m % 2 + n % 2) % 2 == 1) {
-			return Math.max(nums1LeftMax, nums2LeftMax);
+	// 先确定nums1的分割线位置，nums2的分割线位置可以由totalLeft-i得到
+	// 分割线需要保证nums1[i - 1] <= nums2[j] && nums1[i] >= nums[j - 1]
+	int left = 0;
+	int right = m;
+	while (left < right) {
+		//+1是为了防止[0,1]这样的数组在二分时进入死循环，需要注意这样写会导致到不了数组的0号位置
+		int i = left + (right - left + 1) / 2;
+		int j = totalLeft - i;
+		if (nums1[i - 1] > nums2[j]) {
+			right = i - 1;
 		} else {
-			return (double)(Math.max(nums1LeftMax, nums2LeftMax) 
-						 + Math.min(nums1RightMin, nums2RightMin)) / 2;
+			left = i;
 		}
 	}
+
+	int i = left;
+	int j = totalLeft - left;
+
+	int nums1LeftMax = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];
+	int nums1RightMin = i == m ? Integer.MAX_VALUE : nums1[i];
+	int nums2LeftMax = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];
+	int nums2RightMin = j == n ? Integer.MAX_VALUE : nums2[j];
+
+	// 防止相加溢出
+	if ((m % 2 + n % 2) % 2 == 1) {
+		return Math.max(nums1LeftMax, nums2LeftMax);
+	} else {
+		return (double)(Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin)) / 2;
+	}
+}
+```
+
+```
+	123
 ```
 
