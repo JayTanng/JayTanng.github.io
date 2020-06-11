@@ -39,62 +39,111 @@ tag: Leetcode
 ## <a name="anchor3"></a>双指针法
 
 每个指针相当于一条分割线，双指针一共将两个数组分层4部分。比如，    
+<div align="center"><img src="../assets/img/diagram/20200610_slice3.jpg" alt="分割情况1" style="width:70%; height:70%;" /></div>
+<div align="center"><img src="../assets/img/diagram/20200610_slice2.jpg" alt="分割情况2" style="width:70%; height:70%;" /></div>
+<div align="center"><img src="../assets/img/diagram/20200610_slice1.jpg" alt="分割情况3" style="width:70%; height:70%;" /></div>   
 
-| nums1 | nums2 |
-| :---- | :---- |
-| 1 2 3 | 7 8 9 |
-| 4 5 6 | 10 11 12 |    
+我们使用一条分割线把两个数组分别分割成两部分：   
+1. 红线左边和右边的元素个数相等，或者左边元素的个数比右边元素的个数多1个；
+2. 红线左边的所有元素的数组<=红线右边的所有元素的数值；  
+那么中位数就一定只与红线两侧的元素有关。
 
-元素总个数可以为奇数也可以为偶数，关于这点算法中做了两个约定：  
-* 指针所指的数组下标表示分割线右边第一个数，所以当总数为奇数时直接取分割线左边的最大值，当总数为偶数时需要求左边最大值和右边最小值的平均值。
-* 中位数左边的总元素$ totalLeft = \frac{nums1.length + nums2.length + 1}{2} $     
+算法思想为：
+> 定义两个指针<span class="inline_code_block">nums1Index</span>，<span class="inline_code_block">nums2Index</span>；
+> 定义两个变量<span class="inline_code_block">leftVal</span>，<span class="inline_code_block">rightVal</span>用来表示中位数。如果数组为<span class="inline_code_block">[1,2][3]</span>，中位数就是rightVal，如果数组为<span class="inline_code_block">[1,3][2,4]</span>，则<span class="inline_code_block">leftVal=2、rightVal=3</span>
+> 循环$ totalLeft = \frac{nums1.length + nums2.length}{2} + 1 $次，每次比较<span class="inline_code_block">nums1[nums1Index]</span>和<span class="inline_code_block">nums2[nums2Index]</span>，如果小于则<span class="inline_code_block">nums1Index+1</span>否则<span class="inline_code_block">nums2Index+1</span>
+> 同时改变<span class="inline_code_block">leftVal</span>和<span class="inline_code_block">rightVal</span>
+> 最后根据奇偶的情况输入相应值
 
 算法性能如下：
 * 时间复杂度为**O(m+n)**
-* 空间复杂度为**O(m+n)**    
+* 空间复杂度为**O(1)**    
 
 算法代码如下：
 
 ``` java
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        double res = 0.0;
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        /**
+         *  totalLeft表示两个数组合起来后，中位数左边的元素个数
+         *  约定当len1+len2为奇数时，中位数不包括在totalLeft中，
+         *  又因为除法是向下取整的，所以无论奇偶totalLeft=(len1 + len2) / 2
+         */
+        int totalLeft = len1 + (len2 - len1) / 2;
+
+        /**
+         * 算法核心部分
+         * leftVal表示中位数的左值，rightVal表示中位数右值。比如在[1,3],[2,4]中，leftVal=2、rightVal=3；
+         * nums1Index表示nums1中的分割指针，nums2Index表示nums2中的分割指针
+         */
+        int leftVal = -1, rightVal = -1;
+        int nums1Index = 0, nums2Index = 0;
+        /**
+         *  由totalLeft定义可知，而且rightVal=nums[index++]
+         *  可以举例[1,3][2,4]这种情况，循环第二次时，leftVal=1、rightVal=2，必须要多循环一次才能得到正确的2，3
+         *  所以应该循环totalLeft+1次
+         */
+        for (int i = 0; i <= totalLeft; i++) {
+            leftVal = rightVal;
+            /* 注意||的用法，因为当nums2的指针指向len2时，指针无法继续移动这个时候只能移动nums1的指针，同理&&的情况也是要移动nums2的指针 */
+            if (nums1Index < len1 && (nums2Index >= len2 || nums1[nums1Index] < nums2[nums2Index])) {
+                rightVal = nums1[nums1Index++];
+            } else {
+                rightVal = nums2[nums2Index++];
+            }
+        }
+        
+        if (((len1 & 1) ^ (len2 & 1)) == 0)
+            return (leftVal + rightVal) / 2.0;
+        else
+            return rightVal;
+    }
+```   
+在这里和大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)希望读者可以自己尝试做一做     
+[[Top]](#top)
+
+## <a name="anchor4"></a>二分法
+该方法大体思路和上面的二分法相似，但是划分数组时对单个数组使用了二分法，先确定一个数组中<span class="inline_code_block">left</span>的元素个数，
+再用<span class="inline_code_block">left</span>减去<span class="inline_code_block">left</span>得到另一个数组的<span class="inline_code_block">left</span>个数，最后从左半区间找最大值，从右半区找最小值。
+算法中约定$ totalLeft = \frac{nums1.length + nums2.length + 1}{2} $所以当元素总数为偶数时，中位数是<span class="inline_code_block">totalLeft</span>中的最大值。    
+因为二分的缘故所以时间复杂度降低到了**O(log(m+n))**。
+
+``` java
+	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         /* 交换数组，确保nums1指向短数组 */
         if (nums1.length > nums2.length) {
             int[] temp = nums1;
             nums1 = nums2;
             nums2 = temp;
         }
-        if (nums1.length == 0) {
-            int len = nums2.length;
-            res = len % 2 == 0 ? (double) (nums2[len / 2] + nums2[len / 2 - 1]) / 2 : nums2[len / 2];
-            return res;
-        }
-        int len1 = nums1.length;
-        int len2 = nums2.length;
-        /**
-         * i，j分别表示nums1和nums2的指针
-         */
-        int i = 0;
-        int j = 0;
-        /* totalLeft表示两个数组合起来后，中位数左边的元素个数 */
-        int totalLeft = len1 + (len2 - len1 + 1) / 2;
+
+        int m = nums1.length;
+        int n = nums2.length;
+
+        /* 因为除法是向下取整的，所以无论m+n是奇数还是偶数，中位数都可以用(m+n+1)/2表示 */
+        int totalLeft = m + (n - m + 1) / 2;   /* 防止m，n相加大于2^16-1 */
+
         /**
          * 算法核心部分
-         * 初始时，用i，j两个指针分别指向nums1和nums2的0号位置
-         * 一共循环totalLeft次，每次循环时比较nums1[i]和nums2[j]的值，当<时，说明该数排在合并后数组的前置位置所以i++
-         * 需要注意i有可能会移到nums1的最后一位，所以需要判断i<nums1.length，当不符合条件则需要将j向右移动
-         * 显然，当时nums1[i]>nums2[j],j也需要向右移动
-         *
-         * 又因为按照我的写法i，j都有可能等于数组长度所以需要每次数组取值时需要判断是否越界，越界了就下标减一
-         */
-        for (; totalLeft > 0; totalLeft--) {
-            if (nums1[i == len1 ? i - 1 : i] < nums2[j == len2 ? j - 1 : j]
-                    && i < len1) {
-                i++;
-            } else if (j < len2) {
-                j++;
+         * 先确定nums1的分割线位置，nums2的分割线位置可以由totalLeft-i得到
+         * 分割线需要保证nums1[i - 1] <= nums2[j] && nums1[i] >= nums[j - 1]
+          */
+        int left = 0;
+        int right = m;
+        while (left < right) {
+            /* +1是为了防止[0,1]这样的数组在二分时进入死循环，需要注意这样写会导致到不了数组的0号位置 */
+            int i = left + (right - left + 1) / 2;
+            int j = totalLeft - i;
+            if (nums1[i - 1] > nums2[j]) {
+                right = i - 1;
+            } else {
+                left = i;
             }
         }
+
+        int i = left;
+        int j = totalLeft - left;
 
         /**
          * 分别求两个数组分割线左边的最大值和右边的最小值
@@ -106,9 +155,10 @@ tag: Leetcode
          * 数组长度位置是不能取的，为了确保取到另一个数组中分割线右边的值，所以定义为整数最大值
          */
         int nums1LeftMax = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];
-        int nums1RightMin = i == len1 ? Integer.MAX_VALUE : nums1[i];
+        int nums1RightMin = i == m ? Integer.MAX_VALUE : nums1[i];
         int nums2LeftMax = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];
-        int nums2RightMin = j == len2 ? Integer.MAX_VALUE : nums2[j];
+        int nums2RightMin = j == n ? Integer.MAX_VALUE : nums2[j];
+
 
         /**
          * 按照约定，指针所指的数组下标表示分割线右边第一个数，
@@ -116,71 +166,12 @@ tag: Leetcode
          * 例如nums1=[1],nums2=[2,3]，最终指针分别指向1，1，所以中位数等于Math.max(nums1LeftMax, nums2LeftMax)=2
          * 当总数为偶数时需要求左边最大值和右边最小值的平均值
          */
-        if ((len1 % 2 + len2 % 2) % 2 == 1) {
-            res = Math.max(nums1LeftMax, nums2LeftMax);
+        if ((m % 2 + n % 2) % 2 == 1) {   /* 防止相加溢出 */
+            return Math.max(nums1LeftMax, nums2LeftMax);
         } else {
-            res =  (double)(Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin)) / 2;
+            return (double)(Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin)) / 2;
         }
-        return res;
+
     }
-```   
-在这里和大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)希望读者可以自己尝试做一做     
-[[Top]](#top)
-
-## <a name="anchor4"></a>二分法
-该方法大体思路和上面的二分法相似，但是划分数组时对单个数组使用了二分法，先确定一个数组中left的元素个数，
-再用totalLeft减去left得到另一个数组的left个数。因为二分的缘故所以时间复杂度降低到了**O(log(m+n))**
-
-``` java
-	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-		/* sdfsadfs */
-		if (nums1.length > nums2.length) {
-			int[] temp = nums1;
-			nums1 = nums2;
-			nums2 = temp;
-		}
-		
-		int m = nums1.length;
-		int n = nums2.length;
-
-		/**
-		 * 因为除法是向下取整的，所以无论m+n是奇数还是偶数，中位数都可以用(m+n+1)/2表示
-		 * m + (n - m + 1) / 2是防止m，n相加大于2^16-1
-		 */
-		int totalLeft = m + (n - m + 1) / 2;
-
-		/**
-		 * 先确定nums1的分割线位置，nums2的分割线位置可以由totalLeft-i得到
-		 * 分割线需要保证nums1[i - 1] <= nums2[j] && nums1[i] >= nums[j - 1]
-		 */
-		int left = 0;
-		int right = m;
-		while (left < right) {
-			/* +1是为了防止[0,1]这样的数组在二分时进入死循环，需要注意这样写会导致到不了数组的0号位置 */
-			int i = left + (right - left + 1) / 2;
-			int j = totalLeft - i;
-			if (nums1[i - 1] > nums2[j]) {
-				right = i - 1;
-			} else {
-				left = i;
-			}
-		}
-
-		int i = left;
-		int j = totalLeft - left;
-
-		int nums1LeftMax = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];
-		int nums1RightMin = i == m ? Integer.MAX_VALUE : nums1[i];
-		int nums2LeftMax = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];
-		int nums2RightMin = j == n ? Integer.MAX_VALUE : nums2[j];
-
-		/* 防止相加溢出 */
-		if ((m % 2 + n % 2) % 2 == 1) {
-			return Math.max(nums1LeftMax, nums2LeftMax);
-		} else {
-			return (double)(Math.max(nums1LeftMax, nums2LeftMax) 
-							+ Math.min(nums1RightMin, nums2RightMin)) / 2;
-		}
-	}
 ```
 [[Top]](#top)
