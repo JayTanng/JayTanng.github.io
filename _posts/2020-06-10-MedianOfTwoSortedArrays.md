@@ -48,11 +48,12 @@ tag: Leetcode
 2. 红线左边的所有元素的数组<=红线右边的所有元素的数值；  
 那么中位数就一定只与红线两侧的元素有关。
 
+<br>
 算法思想为：
-> 定义两个指针<span class="inline_code_block">nums1Index</span>，<span class="inline_code_block">nums2Index</span>；
-> 定义两个变量<span class="inline_code_block">leftVal</span>，<span class="inline_code_block">rightVal</span>用来表示中位数。如果数组为<span class="inline_code_block">[1,2][3]</span>，中位数就是rightVal，如果数组为<span class="inline_code_block">[1,3][2,4]</span>，则<span class="inline_code_block">leftVal=2、rightVal=3</span>
-> 循环$ totalLeft = \frac{nums1.length + nums2.length}{2} + 1 $次，每次比较<span class="inline_code_block">nums1[nums1Index]</span>和<span class="inline_code_block">nums2[nums2Index]</span>，如果小于则<span class="inline_code_block">nums1Index+1</span>否则<span class="inline_code_block">nums2Index+1</span>
-> 同时改变<span class="inline_code_block">leftVal</span>和<span class="inline_code_block">rightVal</span>
+> 定义两个指针<span class="inline_code_block">nums1Index</span>，<span class="inline_code_block">nums2Index</span>；    
+> 定义两个变量<span class="inline_code_block">leftVal</span>，<span class="inline_code_block">rightVal</span>用来表示中位数。如果数组为<span class="inline_code_block">[1,2][3]</span>，中位数就是rightVal，如果数组为<span class="inline_code_block">[1,3][2,4]</span>，则<span class="inline_code_block">leftVal=2、rightVal=3</span>     
+> 循环$ totalLeft = \frac{nums1.length + nums2.length}{2} + 1 $次，每次比较<span class="inline_code_block">nums1[nums1Index]</span>和<span class="inline_code_block">nums2[nums2Index]</span>，如果小于则<span class="inline_code_block">nums1Index+1</span>否则<span class="inline_code_block">nums2Index+1</span>     
+> 同时改变<span class="inline_code_block">leftVal</span>和<span class="inline_code_block">rightVal</span>    
 > 最后根据奇偶的情况输入相应值
 
 算法性能如下：
@@ -101,11 +102,11 @@ tag: Leetcode
     }
 ```   
 在这里和大家分享一道双指针法经典问题[Leetcode88.合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)希望读者可以自己尝试做一做     
-[[Top]](#top)
+[[Top]](#top) 
 
 ## <a name="anchor4"></a>二分法
 该方法大体思路和上面的二分法相似，但是划分数组时对单个数组使用了二分法，先确定一个数组中<span class="inline_code_block">left</span>的元素个数，
-再用<span class="inline_code_block">left</span>减去<span class="inline_code_block">left</span>得到另一个数组的<span class="inline_code_block">left</span>个数，最后从左半区间找最大值，从右半区找最小值。
+再用<span class="inline_code_block">left</span>减去<span class="inline_code_block">left</span>得到另一个数组的<span class="inline_code_block">left</span>个数，最后从左半区间找最大值，从右半区找最小值。    
 算法中约定$ totalLeft = \frac{nums1.length + nums2.length + 1}{2} $所以当元素总数为偶数时，中位数是<span class="inline_code_block">totalLeft</span>中的最大值。    
 因为二分的缘故所以时间复杂度降低到了**O(log(m+n))**。
 
