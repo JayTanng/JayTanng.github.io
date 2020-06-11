@@ -54,7 +54,7 @@ tag: Leetcode
 <br>
 算法思想为：
 > 定义两个指针<span class="inline_code_block">nums1Index</span>，<span class="inline_code_block">nums2Index</span>；    
-> 定义两个变量<span class="inline_code_block">leftVal</span>，<span class="inline_code_block">rightVal</span>用来表示中位数。如果数组为<span class="inline_code_block">[1,2][3]</span>，中位数就是rightVal，如果数组为<span class="inline_code_block">[1,3][2,4]</span>，则<span class="inline_code_block">leftVal=2、rightVal=3</span>     
+> 定义两个变量<span class="inline_code_block">leftVal</span>，<span class="inline_code_block">rightVal</span>用来表示中位数。如果数组为<span class="inline_code_block">[1,2][3]</span>，中位数就是<span class="inline_code_block">rightVal</span>，如果数组为<span class="inline_code_block">[1,3][2,4]</span>，则<span class="inline_code_block">leftVal=2、rightVal=3</span>     
 > 循环$ totalLeft = \frac{nums1.length + nums2.length}{2} + 1 $次，每次比较<span class="inline_code_block">nums1[nums1Index]</span>和<span class="inline_code_block">nums2[nums2Index]</span>，如果小于则<span class="inline_code_block">nums1Index+1</span>否则<span class="inline_code_block">nums2Index+1</span>     
 > 同时改变<span class="inline_code_block">leftVal</span>和<span class="inline_code_block">rightVal</span>    
 > 最后根据奇偶的情况输入相应值
