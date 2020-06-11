@@ -39,9 +39,12 @@ tag: Leetcode
 ## <a name="anchor3"></a>双指针法
 
 每个指针相当于一条分割线，双指针一共将两个数组分层4部分。比如，    
-<div align="center"><img src="../assets/img/diagram/20200610_slice3.jpg" alt="分割情况1" style="width:70%; height:70%;" /></div>
-<div align="center"><img src="../assets/img/diagram/20200610_slice2.jpg" alt="分割情况2" style="width:70%; height:70%;" /></div>
-<div align="center"><img src="../assets/img/diagram/20200610_slice1.jpg" alt="分割情况3" style="width:70%; height:70%;" /></div>   
+<div align="center"><img src="../assets/img/diagram/20200610_slice3.jpg" alt="分割情况1" style="width:50%; height:50%;" /></div>
+<div class="img_title">偶数个元素分割结果</div>
+<div align="center"><img src="../assets/img/diagram/20200610_slice2.jpg" alt="分割情况2" style="width:50%; height:50%;" /></div>
+<div class="img_title">偶数个元素分割结果</div>
+<div align="center"><img src="../assets/img/diagram/20200610_slice1.jpg" alt="分割情况3" style="width:50%; height:50%;" /></div>   
+<div class="img_title">特殊分割位置（头部或尾部）</div>
 
 我们使用一条分割线把两个数组分别分割成两部分：   
 1. 红线左边和右边的元素个数相等，或者左边元素的个数比右边元素的个数多1个；
