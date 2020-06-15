@@ -15,9 +15,9 @@ tag: Leetcode
 
 ## <a name="anchor1"></a>问题描述
 
-> 难度：<font color="red">困难</font>  
-> 链接：[寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)   
-> 给定两个大小为 m 和 n 的正序（从小到大）数组<span class="inline_code_block">nums1</span>和<span class="inline_code_block">nums2</span>。
+> **难度：**<font color="red">困难</font>  
+> **链接：**[寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)   
+> **描述：**给定两个大小为 m 和 n 的正序（从小到大）数组<span class="inline_code_block">nums1</span>和<span class="inline_code_block">nums2</span>。
 > 请你找出这两个正序数组的中位数，并且要求算法的时间复杂度为 **O(log(m + n))**。
 > 你可以假设<span class="inline_code_block">nums1</span>和<span class="inline_code_block">nums2</span>不会同时为空。
 
