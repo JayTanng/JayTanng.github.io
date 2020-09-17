@@ -10,5 +10,8 @@ Database:
 Leetcode:
   name: Leetcode
   
+MQ:
+  name: MQ
+  
 Thoughts:
   name: Thoughts
